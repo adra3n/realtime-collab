@@ -27,7 +27,8 @@ function App() {
     toast.success(`Task: "${newTask.title}" added`)
   }
   const handlePeopleSubmit = (newPerson) => {
-    dispatch(addPerson(newPerson))
+    socket.emit('people added', newPerson)
+    // dispatch(addPerson(newPerson))
   }
   const handleComplete = (id) => {
     // dispatch(completeTask(id))
@@ -48,12 +49,10 @@ function App() {
 
     const newTasks = [...tasks]
 
-    const draggedTask = newTasks[source.index]
-
+    const draggedTask = newTasks.splice(source.index, 1)[0]
     draggedTask.status = destination.droppableId
-
-    newTasks.splice(source.index, 1)
     newTasks.splice(destination.index, 0, draggedTask)
+
     // dispatch(setTasks(newTasks))
     socket.emit('task updated', draggedTask.id, draggedTask)
 
@@ -61,17 +60,23 @@ function App() {
   }
 
   useEffect(() => {
-    socket = io('http://localhost:3000')
+    socket = io('http://localhost:4000')
     socket.on('task added', (task) => {
-      console.log('websocket:task added')
+      console.log('websocket:task added', task)
       dispatch(addTask(task))
     })
     socket.on('task completed', (id) => {
-      console.log('websocket:task completed')
+      console.log('websocket:task completed', id)
       dispatch(completeTask(id))
     })
+
+    socket.on('people added', (newPerson) => {
+      console.log('websocket:person added', newPerson)
+      dispatch(handlePeopleSubmit(newPerson))
+    })
+
     socket.on('task updated', (id, updatedTask) => {
-      console.log('websocket:task updated')
+      console.log('websocket:task updated', updatedTask)
       dispatch(updateTask(id, updatedTask))
     })
     socket.on('task removed', (id) => {
