@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { nanoid } from 'nanoid'
 import { toast } from 'react-toastify'
 import { connect } from 'react-redux'
-import { addTask } from './redux/actions'
+import { addTask } from '../redux/actions'
 
 function TaskHookForm({ people, dispatch }) {
   const {

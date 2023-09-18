@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addPerson } from './redux/actions'
+import { addPerson } from '../redux/actions'
 import { toast } from 'react-toastify'
 
 const PeopleForm = ({ people }) => {

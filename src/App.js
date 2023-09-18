@@ -1,7 +1,7 @@
 import './app.css'
-import Task from './Task'
-import TaskHookForm from './TaskHookForm'
-import PeopleForm from './PeopleForm'
+import Task from './components/Task'
+import TaskHookForm from './components/TaskHookForm'
+import PeopleForm from './components/PeopleForm'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
 import {
