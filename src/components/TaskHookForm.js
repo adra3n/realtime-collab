@@ -69,9 +69,9 @@ function TaskHookForm({ people, dispatch }) {
           </p>
         )}
       </div>
-      <div className="pt-4">
-        <label className="text-sm block pb-1.5">Team</label>
-        <div>
+      <div className="pt-4 flex">
+        <label className="text-sm block pb-1.5 ">Team</label>
+        <div className="flex flex-wrap">
           {people.map((p) => (
             <label
               className="text-md pt-1.5 pb-1.5 pr-2 pl-1.5 rounded-md border border-solid border-[#ccc] mr-2 mb-2 inline-flex items-center cursor-pointer"
