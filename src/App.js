@@ -4,13 +4,7 @@ import TaskHookForm from './components/TaskHookForm'
 import PeopleForm from './components/PeopleForm'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addPerson,
-  addTask,
-  completeTask,
-  removeTask,
-  updateTask,
-} from './redux/actions'
+import { addTask, completeTask, removeTask, updateTask } from './redux/actions'
 import { useEffect } from 'react'
 import io from 'socket.io-client'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -32,12 +26,13 @@ function App() {
   }
   const handleComplete = (id) => {
     // dispatch(completeTask(id))
+    // toast.success(`Congrats! "${task.title}" is done!`)
     const task = tasks.find((t) => t.id === id)
-    socket.emit('task completed', id)
-    toast.success(`Congrats! "${task.title}" is done!`)
+    socket.emit('task completed', id, task)
   }
   const handleRemove = (id) => {
     // dispatch(removeTask(id))
+    // toast(`Task with id:${id} is removed!`)
     socket.emit('task removed', id)
   }
   const handleOnDragEnd = (result) => {
@@ -64,24 +59,29 @@ function App() {
     socket.on('task added', (task) => {
       console.log('websocket:task added', task)
       dispatch(addTask(task))
+      toast.success(`Task: "${task.title}" added`)
     })
-    socket.on('task completed', (id) => {
-      console.log('websocket:task completed', id)
+    socket.on('task completed', (id, task) => {
+      console.log('websocket:task completed', id, task)
       dispatch(completeTask(id))
+      toast.success(`Congrats! "${task.title}" is done!`)
     })
 
     socket.on('people added', (newPerson) => {
       console.log('websocket:person added', newPerson)
       dispatch(handlePeopleSubmit(newPerson))
+      toast.success(`New person "${newPerson}" is added!`)
     })
 
     socket.on('task updated', (id, updatedTask) => {
       console.log('websocket:task updated', updatedTask)
       dispatch(updateTask(id, updatedTask))
+      toast(`"${updatedTask.title}" is updated`)
     })
     socket.on('task removed', (id) => {
       console.log('websocket:task removed')
       dispatch(removeTask(id))
+      toast(`Task with id:${id} is removed!`)
     })
     return () => {
       console.log('websocket closed')
