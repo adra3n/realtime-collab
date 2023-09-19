@@ -7,7 +7,12 @@ app.use(cors())
 
 const server = http.createServer(app)
 const socketio = require('socket.io')
-const io = socketio(server)
+const io = require('socket.io')(server, {
+  cors: {
+    origin: 'http://localhost:4000',
+    methods: ['GET', 'POST'],
+  },
+})
 
 const PORT = process.env.PORT || 4000
 
