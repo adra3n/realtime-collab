@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addPerson } from '../redux/actions'
 import { toast } from 'react-toastify'
 
 interface PeopleFormProps {
   people: string[]
+  submitFn: (name: string) => void
 }
 
-const PeopleForm: React.FC<PeopleFormProps> = ({ people }) => {
+const PeopleForm: React.FC<PeopleFormProps> = ({
+  people,
+  submitFn,
+}: PeopleFormProps) => {
   const [name, setName] = useState('')
-  const dispatch = useDispatch()
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
     setName(e.target.value)
@@ -17,9 +18,9 @@ const PeopleForm: React.FC<PeopleFormProps> = ({ people }) => {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    dispatch(addPerson(name))
     setName('')
-    toast.success('Person added')
+    submitFn(name)
+    // toast.success('Person added')
   }
 
   return (
