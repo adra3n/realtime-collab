@@ -48,7 +48,7 @@ function App() {
     draggedTask.status = destination.droppableId
     newTasks.splice(destination.index, 0, draggedTask)
 
-    // dispatch(setTasks(newTasks))
+    // dispatch(updateTask(newTasks))
     socket.emit('task updated', draggedTask.id, draggedTask)
 
     console.log(source, destination)
@@ -92,7 +92,7 @@ function App() {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <div className="h-screen flex">
-        <div className="bg-white flex-shrink-0 flex-none border-r-2 border-solid border-[#f3d4b0] overflow-auto">
+        <div className="bg-white  max-w-[25vw] flex-shrink-0 flex-none border-r-2 border-solid border-[#f3d4b0] overflow-auto">
           <div className="pt-8 pr-8 pb-6 pl-8 border-b border border-solid border-[#ddd]">
             <h2 className="pb-2 text-2xl">New Task</h2>
             <TaskHookForm people={team} submitFn={handleTaskSubmit} />
