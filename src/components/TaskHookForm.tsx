@@ -3,29 +3,40 @@ import { useForm } from 'react-hook-form'
 import { nanoid } from 'nanoid'
 import { toast } from 'react-toastify'
 import { connect } from 'react-redux'
-import { addTask } from '../redux/actions'
 
-function TaskHookForm({ people, dispatch }) {
+interface TaskHookFormProps {
+  people: string[]
+  submitFn: (newTask: FormData) => void
+}
+
+type FormData = {
+  title: string
+  description: string
+  people: string[]
+  deadline: string
+}
+
+const TaskHookForm = ({ people, submitFn }: TaskHookFormProps) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
-  } = useForm({ mode: 'onChange' })
+  } = useForm<FormData>({ mode: 'onChange' })
 
   function mySubmit(data) {
     const newTask = {
       ...data,
       createdAt: new Date().toLocaleDateString(),
       id: nanoid(5),
-      status: 'inprogress',
+      status: 'todo',
     }
-    dispatch(addTask(newTask))
-    toast.success(data.title + ' added')
+    submitFn(newTask)
     reset({
       title: '',
       description: '',
       deadline: '',
+      people: [],
     })
   }
 
@@ -59,7 +70,7 @@ function TaskHookForm({ people, dispatch }) {
               message: 'Min 10 characters for description',
             },
           })}
-          rows="3"
+          rows={3}
           id="description"
           name="description"
         ></textarea>

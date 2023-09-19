@@ -2,7 +2,21 @@ import React from 'react'
 import differenceInDays from 'date-fns/differenceInDays'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const Task = ({ taskObj, onComplete, onRemove }) => {
+interface TaskProps {
+  taskObj: {
+    id: number | string
+    title: string
+    description: string
+    deadline: string
+    createdAt: string
+    people: string[]
+    status: string
+  }
+  onComplete: (id: string | number) => void
+  onRemove: (id: string | number) => void
+}
+
+const Task: React.FC<TaskProps> = ({ taskObj, onComplete, onRemove }) => {
   const deadlineDistance = formatDistanceToNow(new Date(taskObj.deadline), {
     addSuffix: true,
   })
