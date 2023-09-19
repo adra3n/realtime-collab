@@ -19,13 +19,11 @@ I mixed them up in this app.
 - Real-time task management and collaboration.
 - Create, update and remove tasks.
 - Drag and drop and organize tasks on a Kanban board with "To Do," "In Progress," and "Completed" columns.
-- Assign tasks to team members.
+- Add team members. Assign tasks to team members.
 - Set due dates and receive alerts. When due date is close or past text color will go red to notify the customer.
-- Toast notifications for task-related events.
+- Real-time Toast notifications for task-related events.
 
 ## Technologies
-
-This application is built using the following technologies and libraries:
 
 - React
 - Redux
