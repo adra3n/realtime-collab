@@ -6,14 +6,10 @@ const app = express()
 app.use(cors())
 
 const server = http.createServer(app)
+const socketio = require('socket.io')
+const io = socketio(server)
 
-const io = require('socket.io')(4000, {
-  cors: {
-    origin: ['http://localhost:4000'],
-  },
-})
-
-const PORT = process.env.PORT || 3008
+const PORT = process.env.PORT || 4000
 
 io.on('connection', (socket) => {
   console.log('A user connected')
