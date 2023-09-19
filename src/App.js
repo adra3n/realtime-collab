@@ -4,7 +4,13 @@ import TaskHookForm from './components/TaskHookForm'
 import PeopleForm from './components/PeopleForm'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTask, completeTask, removeTask, updateTask } from './redux/actions'
+import {
+  addTask,
+  completeTask,
+  removeTask,
+  updateTask,
+  addPerson,
+} from './redux/actions'
 import { useEffect } from 'react'
 import io from 'socket.io-client'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
@@ -16,24 +22,28 @@ function App() {
   const team = useSelector((state) => state.team)
   const dispatch = useDispatch()
   const handleTaskSubmit = (newTask) => {
-    // dispatch(addTask(newTask))
-    socket.emit('task added', newTask)
+    dispatch(addTask(newTask))
     toast.success(`Task: "${newTask.title}" added`)
+    socket.broadcast.emit('task added', newTask)
   }
   const handlePeopleSubmit = (newPerson) => {
-    socket.emit('people added', newPerson)
-    // dispatch(addPerson(newPerson))
+    dispatch(addPerson(newPerson))
+    toast.success(`New person "${newPerson}" is added!`)
+    socket.broadcast.emit('people added', newPerson)
   }
   const handleComplete = (id) => {
-    // dispatch(completeTask(id))
-    // toast.success(`Congrats! "${task.title}" is done!`)
     const task = tasks.find((t) => t.id === id)
-    socket.emit('task completed', id, task)
+
+    if (task) {
+      dispatch(completeTask(id))
+      toast.success(`Congrats! "${task.title}" is done!`)
+      socket.broadcast.emit('task completed', id, task)
+    }
   }
   const handleRemove = (id) => {
-    // dispatch(removeTask(id))
-    // toast(`Task with id:${id} is removed!`)
-    socket.emit('task removed', id)
+    dispatch(removeTask(id))
+    toast(`Task with id:${id} is removed!`)
+    socket.broadcast.emit('task removed', id)
   }
   const handleOnDragEnd = (result) => {
     if (!result.destination) return
@@ -48,8 +58,8 @@ function App() {
     draggedTask.status = destination.droppableId
     newTasks.splice(destination.index, 0, draggedTask)
 
-    // dispatch(updateTask(newTasks))
-    socket.emit('task updated', draggedTask.id, draggedTask)
+    dispatch(updateTask(newTasks))
+    socket.broadcast.emit('task updated', draggedTask.id, draggedTask)
 
     console.log(source, destination)
   }
@@ -69,7 +79,7 @@ function App() {
 
     socket.on('people added', (newPerson) => {
       console.log('websocket:person added', newPerson)
-      dispatch(handlePeopleSubmit(newPerson))
+      dispatch(addPerson(newPerson))
       toast.success(`New person "${newPerson}" is added!`)
     })
 

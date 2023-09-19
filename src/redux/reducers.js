@@ -12,12 +12,9 @@ const tasksReducer = (state = [], action) => {
 
     case 'UPDATE_TASK':
       const { id, updatedTask } = action.payload
-      return {
-        ...state,
-        tasks: state.tasks.map((task) =>
-          task.id === id ? { ...task, ...updatedTask } : task
-        ),
-      }
+      return state.map((task) =>
+        task.id === id ? { ...task, ...updatedTask } : task
+      )
 
     default:
       return state
