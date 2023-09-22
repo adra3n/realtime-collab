@@ -1,48 +1,47 @@
 export const ADD_TASK = 'ADD_TASK'
-export const ADD_PERSON = 'ADD_PERSON'
 export const COMPLETE_TASK = 'COMPLETE_TASK'
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const UPDATE_TASK = 'UPDATE_TASK'
+export const ADD_PERSON = 'ADD_PERSON'
+export const UPDATE_TASK_ORDER = 'UPDATE_TASK_ORDER'
 
-interface Task {
-  id: number | string
-  title: string
-  description: string
-  deadline: string
-  createdAt: string
-  status: 'todo' | 'inprogress' | 'done'
-  people: string[]
-}
-
-export function addTask(newTask: Task) {
-  return {
-    type: ADD_TASK,
-    payload: newTask,
-  }
-}
-
-export const removeTask = (id: number) => ({
-  type: REMOVE_TASK,
-  payload: id,
+export const addTask = (newTask) => ({
+  type: ADD_TASK,
+  payload: {
+    newTask,
+  },
 })
 
-export function completeTask(id: string | number) {
-  return {
-    type: COMPLETE_TASK,
-    payload: id,
-  }
-}
+export const completeTask = (taskId, columnId) => ({
+  type: COMPLETE_TASK,
+  payload: {
+    taskId,
+    columnId,
+  },
+})
+export const removeTask = (taskId) => ({
+  type: REMOVE_TASK,
+  payload: {
+    taskId,
+  },
+})
+export const updateTask = (taskId, updatedTask) => ({
+  type: UPDATE_TASK,
+  payload: {
+    taskId,
+    updatedTask,
+  },
+})
+export const updateTaskOrder = (columnId, sourceIndex, destIndex) => ({
+  type: UPDATE_TASK_ORDER,
+  payload: {
+    columnId,
+    sourceIndex,
+    destIndex,
+  },
+})
 
-export const updateTask = (id: string | number, updatedTask: Task) => {
-  return {
-    type: UPDATE_TASK,
-    payload: { id, updatedTask },
-  }
-}
-
-export function addPerson(newPerson: string) {
-  return {
-    type: ADD_PERSON,
-    payload: newPerson,
-  }
-}
+export const addPerson = (newPerson) => ({
+  type: ADD_PERSON,
+  payload: newPerson,
+})
