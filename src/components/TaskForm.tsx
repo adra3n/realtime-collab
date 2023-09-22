@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import { toast } from 'react-toastify'
 import { connect } from 'react-redux'
 
-interface TaskHookFormProps {
+interface TaskFormProps {
   people: string[]
   submitFn: (newTask: FormData) => void
 }
@@ -16,7 +16,7 @@ type FormData = {
   deadline: string
 }
 
-const TaskHookForm = ({ people, submitFn }: TaskHookFormProps) => {
+const TaskForm = ({ people, submitFn }: TaskFormProps) => {
   const {
     register,
     handleSubmit,
@@ -140,4 +140,4 @@ const TaskHookForm = ({ people, submitFn }: TaskHookFormProps) => {
     </form>
   )
 }
-export default connect()(TaskHookForm)
+export default connect()(TaskForm)
