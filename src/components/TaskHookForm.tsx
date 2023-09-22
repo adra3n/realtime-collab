@@ -80,12 +80,12 @@ const TaskHookForm = ({ people, submitFn }: TaskHookFormProps) => {
           </p>
         )}
       </div>
-      <div className="pt-4 flex">
-        <label className="text-sm block pb-1.5 ">Team</label>
+      <div className="pt-4 flex ">
+        <label className="text-sm block py-2 pr-2">Team:</label>
         <div className="flex flex-wrap">
           {people.map((p) => (
             <label
-              className="text-md pt-1.5 pb-1.5 pr-2 pl-1.5 rounded-md border border-solid border-[#ccc] mr-2 mb-2 inline-flex items-center cursor-pointer"
+              className="text-md pt-1.5 pb-1.5 px-2 rounded-md border border-solid border-[#ccc] mr-2 mb-2 inline-flex items-center cursor-pointer "
               key={p}
             >
               <input
@@ -98,6 +98,7 @@ const TaskHookForm = ({ people, submitFn }: TaskHookFormProps) => {
                 type="checkbox"
                 name="people"
                 value={p}
+                className="mr-1 mt-1"
               />
               {p}
             </label>
