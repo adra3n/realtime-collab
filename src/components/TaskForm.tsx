@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { nanoid } from 'nanoid'
-import { toast } from 'react-toastify'
 import { connect } from 'react-redux'
 
 interface TaskFormProps {

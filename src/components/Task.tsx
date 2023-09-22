@@ -35,7 +35,7 @@ const Task: React.FC<TaskProps> = ({ taskObj, onRemove }) => {
       </button>
       <h3 className="text-xl text-[#c8781a]">{taskObj.title}</h3>
       <div className="flex items-center justify-between text-sm font-medium text-[#444] mt-2">
-        <span>Ending:</span>
+        {/* <span>Ending:</span> */}
         {/* <span
           className={
             dayDifference > 3
