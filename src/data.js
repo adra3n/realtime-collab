@@ -8,8 +8,9 @@ export const initialColumns = {
     tasks: [
       {
         id: nanoid(5),
-        title: `Task ${nanoid(5)}`,
-        description: 'Description',
+        title: `Create first pages with React`,
+        description:
+          'Create first pages according to Figma desing pixel perfect',
         people: ['Sertaç', 'Volkan'],
         deadline: '22.09.2023',
         createdAt: '12.09.2023',
@@ -17,8 +18,8 @@ export const initialColumns = {
       },
       {
         id: nanoid(5),
-        title: `Task ${nanoid(5)}`,
-        description: 'Description 3',
+        title: ` Decide on MVP features `,
+        description: 'Discuss the MVP features with new implementations',
         people: ['Volkan'],
         deadline: '22.11.2023',
         createdAt: '12.06.2023',
@@ -32,8 +33,9 @@ export const initialColumns = {
     tasks: [
       {
         id: nanoid(5),
-        title: `Task ${nanoid(5)}`,
-        description: 'Description',
+        title: `Initialize the database`,
+        description:
+          'Create a database using PostgreSql, decide on table schema etc..',
         people: ['Ahmet', 'Sertaç'],
         deadline: '29.09.2023',
         createdAt: '11.07.2023',
@@ -41,9 +43,9 @@ export const initialColumns = {
       },
       {
         id: nanoid(5),
-        title: `Task ${nanoid(5)}`,
-        description: 'Description 3',
-        people: ['Volkan', 'Sertaç'],
+        title: `Tech stack for project`,
+        description: 'Discuss and decide on a tech stack for project',
+        people: ['Volkan', 'Sertaç', 'Caner'],
         deadline: '22.11.2023',
         createdAt: '12.06.2023',
         status: 'inprogress',
@@ -56,8 +58,8 @@ export const initialColumns = {
     tasks: [
       {
         id: nanoid(5),
-        title: `Task ${nanoid(5)}`,
-        description: 'Description 3',
+        title: `Design it on Figma`,
+        description: 'Create a new design on Figma for the project',
         people: ['Volkan'],
         deadline: '22.11.2023',
         createdAt: '12.06.2023',
