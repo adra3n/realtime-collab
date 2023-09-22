@@ -1,40 +1,68 @@
+import { nanoid } from 'nanoid'
 export const initialTeam = ['Sertaç', 'Volkan', 'Ahmet', 'Caner']
 
-export const initialTasks = [
-  {
-    id: 1,
-    title: 'Görev 1',
-    description: 'Açıklama 1',
-    people: ['Sertaç', 'Volkan'],
-    deadline: '2023-12-23',
-    status: 'done',
-    createdAt: '12.08.2023',
+export const initialColumns = {
+  todo: {
+    id: 'todo',
+    title: 'To Do',
+    tasks: [
+      {
+        id: nanoid(5),
+        title: `Task ${nanoid(5)}`,
+        description: 'Description',
+        people: ['Sertaç', 'Volkan'],
+        deadline: '22.09.2023',
+        createdAt: '12.09.2023',
+        status: 'todo',
+      },
+      {
+        id: nanoid(5),
+        title: `Task ${nanoid(5)}`,
+        description: 'Description 3',
+        people: ['Volkan'],
+        deadline: '22.11.2023',
+        createdAt: '12.06.2023',
+        status: 'todo',
+      },
+    ],
   },
-  {
-    id: 2,
-    title: 'Görev 2',
-    description: 'Açıklama 2',
-    people: ['Volkan'],
-    deadline: '2023-11-25',
-    status: 'todo',
-    createdAt: '02.09.2023',
+  inprogress: {
+    id: 'inprogress',
+    title: 'In Progress',
+    tasks: [
+      {
+        id: nanoid(5),
+        title: `Task ${nanoid(5)}`,
+        description: 'Description',
+        people: ['Ahmet', 'Sertaç'],
+        deadline: '29.09.2023',
+        createdAt: '11.07.2023',
+        status: 'inprogress',
+      },
+      {
+        id: nanoid(5),
+        title: `Task ${nanoid(5)}`,
+        description: 'Description 3',
+        people: ['Volkan', 'Sertaç'],
+        deadline: '22.11.2023',
+        createdAt: '12.06.2023',
+        status: 'inprogress',
+      },
+    ],
   },
-  {
-    id: 3,
-    title: 'Görev 3',
-    description: 'Açıklama 3',
-    people: ['Ahmet'],
-    deadline: '2023-10-27',
-    status: 'todo',
-    createdAt: new Date().toLocaleDateString(),
+  done: {
+    id: 'done',
+    title: 'Done',
+    tasks: [
+      {
+        id: nanoid(5),
+        title: `Task ${nanoid(5)}`,
+        description: 'Description 3',
+        people: ['Volkan'],
+        deadline: '22.11.2023',
+        createdAt: '12.06.2023',
+        status: 'done',
+      },
+    ],
   },
-  {
-    id: 4,
-    title: 'Görev 4',
-    description: 'Açıklama 4',
-    people: ['Caner', 'Ahmet'],
-    deadline: '2023-08-31',
-    status: 'inprogress',
-    createdAt: '12.09.2023',
-  },
-]
+}
