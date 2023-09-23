@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { initialColumns } from '../data'
+import { initialColumns } from '../data/data'
 
 const tasksReducer = (state = initialColumns, action) => {
   switch (action.type) {

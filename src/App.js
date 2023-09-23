@@ -26,6 +26,7 @@ function App() {
     dispatch(addTask(newTask))
     toast.success(`Task: ${newTask.title} added`)
     socket.emit('task added', newTask)
+    console.log(newTask)
   }
   const handlePeopleSubmit = (newPerson) => {
     dispatch(addPerson(newPerson))
@@ -122,7 +123,9 @@ function App() {
         <div className="flex-1 flex justify-center flex-wrap gap-8 pt-8 pr-8 pb-6 overflow-auto">
           {Object.values(columns).map((column) => (
             <div key={column.id} className="flex-1 min-w-[240px] max-w-[360px]">
-              <h2 className="text-2xl pl-3">{column.title}</h2>
+              <h2 className="text-3xl font-semibold pl-1 mt-4 ">
+                {column.title}
+              </h2>
               <Droppable droppableId={column.id} key={column.id}>
                 {(provided, snapshot) => (
                   <div
@@ -133,8 +136,9 @@ function App() {
                       background: snapshot.isDraggingOver
                         ? 'lightblue'
                         : 'bisque',
-                      padding: 4,
+                      padding: 1,
                       minHeight: 500,
+                      marginTop: '2rem',
                     }}
                   >
                     {column.tasks.map((task, index) => (
@@ -150,9 +154,10 @@ function App() {
                             ref={provided.innerRef}
                             style={{
                               userSelect: 'none',
-                              padding: 16,
-                              margin: '0 0 8px 0',
+                              padding: 5,
+                              margin: '0 0 1rem 0',
                               minHeight: '50px',
+                              borderRadius: 8,
                               //changing active item color here
                               backgroundColor: snapshot.isDragging
                                 ? '#263B4A'

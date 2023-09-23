@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './reducers'
-import { initialColumns, initialTeam } from '../data'
+import { initialColumns, initialTeam } from '../data/data'
 
 const store = configureStore({
   reducer: rootReducer,
