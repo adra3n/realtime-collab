@@ -33,6 +33,10 @@ I mixed them up in this app.
 - TypeScript
 - Yup for form validation
 - React Toastify for notifications
+- Node.js
+- Express
+- Jest for writing socket tests
+- MockSocket for offline socket testing
 
 ## Getting Started
 
